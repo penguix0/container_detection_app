@@ -1,4 +1,4 @@
-name: container_detection_web_app
+name: container_detection_app
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -31,11 +31,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+    
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +60,13 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+
+  fonts:
+    - family: SF-Pro
+      fonts:
+        - asset: fonts/SF-Pro.ttf
+        - asset: fonts/SF-Pro-Italic.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
