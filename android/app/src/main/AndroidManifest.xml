@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.container_detection_app">
+    package="com.example.container_detection_web_app">
    <application
-        android:label="container_detection_app"
+        android:label="container_detection_web_app"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
