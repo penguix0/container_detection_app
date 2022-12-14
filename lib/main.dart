@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(fontFamily: 'SF-Pro'),
         home: Builder(builder: (BuildContext context) {
           /// Init the size_config variables
           SizeConfig().init(context);
