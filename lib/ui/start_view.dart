@@ -1,3 +1,4 @@
+import 'package:container_detection_app/ui/camera_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:container_detection_app/size_config.dart';
@@ -84,7 +85,7 @@ class StartView extends StatelessWidget {
               ),
               onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
                 builder: (BuildContext context) {
-                  return const DetectionView();
+                  return DetectionView();
                 },
               )),
             ),

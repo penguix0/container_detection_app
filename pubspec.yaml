@@ -39,6 +39,9 @@ dependencies:
 
   auto_size_text: ^3.0.0
   camera: ^0.10.0+4
+  tflite_flutter:
+  tflite_flutter_helper:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:
