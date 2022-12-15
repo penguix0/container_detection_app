@@ -10,4 +10,5 @@ class CameraViewSingleton {
   static Size? get actualPreviewSize =>
       Size(screenSize!.width, screenSize!.width * ratio!);
   static List<CameraDescription>? cameras;
+  static int currentCamera = 0;
 }
