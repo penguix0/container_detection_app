@@ -1,8 +1,12 @@
+import 'package:camera/camera.dart';
 import 'package:container_detection_app/ui/start_view.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:container_detection_app/ui/camera_view_singleton.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  CameraViewSingleton.cameras = await availableCameras();
   runApp(const MyApp());
 }
 
