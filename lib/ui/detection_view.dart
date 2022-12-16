@@ -3,7 +3,6 @@
 import 'package:camera/camera.dart';
 import 'package:container_detection_app/size_config.dart';
 import 'package:container_detection_app/ui/camera_view_singleton.dart';
-import 'package:container_detection_app/ui/cupertino_camera_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -95,49 +94,72 @@ class _DetectionViewState extends State<DetectionView> {
                 alignment: Alignment.topRight,
                 child: Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: SizedBox(
-                      width: SizeConfig.blockSizeVertical! * 10,
-                      height: SizeConfig.blockSizeVertical! * 10,
-                      child: CupertinoButton.filled(
-                        padding: EdgeInsets.all(10),
-                        onPressed: () {
-                          _showDialog(CupertinoPicker(
-                              magnification: 1.22,
-                              squeeze: 1.2,
-                              useMagnifier: true,
-                              itemExtent: _kItemExtent,
-                              // This is called when selected item is changed.
-                              onSelectedItemChanged: (int selectedItem) {
-                                setState(() {
-                                  if (_selectedCamera != selectedItem) {
-                                    _selectedCamera = selectedItem;
-                                    CameraViewSingleton.currentCamera =
-                                        selectedItem;
-                                    initCamera();
-                                  }
-                                });
-                              },
-                              children: List<Widget>.generate(
-                                  CameraViewSingleton.cameras!.length,
-                                  (int index) {
-                                return Center(
-                                  child: Text(
-                                    CameraViewSingleton.cameras![index].name,
-                                  ),
-                                );
-                              })));
-                        },
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration:
-                              const BoxDecoration(shape: BoxShape.circle),
-                          child: Icon(
-                            size: SizeConfig.blockSizeVertical! * 5,
-                            Icons.photo_camera,
+                    child: Column(children: [
+                      SizedBox(
+                        width: SizeConfig.blockSizeVertical! * 10,
+                        height: SizeConfig.blockSizeVertical! * 10,
+                        child: CupertinoButton.filled(
+                          padding: EdgeInsets.all(10),
+                          onPressed: () {
+                            _showDialog(CupertinoPicker(
+                                magnification: 1.22,
+                                squeeze: 1.2,
+                                useMagnifier: true,
+                                itemExtent: _kItemExtent,
+                                // This is called when selected item is changed.
+                                onSelectedItemChanged: (int selectedItem) {
+                                  setState(() {
+                                    if (_selectedCamera != selectedItem) {
+                                      _selectedCamera = selectedItem;
+                                      CameraViewSingleton.currentCamera =
+                                          selectedItem;
+                                      initCamera();
+                                    }
+                                  });
+                                },
+                                children: List<Widget>.generate(
+                                    CameraViewSingleton.cameras!.length,
+                                    (int index) {
+                                  return Center(
+                                    child: Text(
+                                      CameraViewSingleton.cameras![index].name,
+                                    ),
+                                  );
+                                })));
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            decoration:
+                                const BoxDecoration(shape: BoxShape.circle),
+                            child: Icon(
+                              size: SizeConfig.blockSizeVertical! * 5,
+                              Icons.photo_camera,
+                            ),
                           ),
                         ),
                       ),
-                    ))))
+                      Padding(
+                        padding:
+                            EdgeInsets.all(SizeConfig.blockSizeVertical! * 1),
+                        child: SizedBox(
+                          width: SizeConfig.blockSizeVertical! * 10,
+                          height: SizeConfig.blockSizeVertical! * 10,
+                          child: CupertinoButton.filled(
+                            padding: EdgeInsets.all(10),
+                            onPressed: () {},
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration:
+                                  const BoxDecoration(shape: BoxShape.circle),
+                              child: Icon(
+                                size: SizeConfig.blockSizeVertical! * 5,
+                                Icons.camera,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ]))))
       ],
     );
   }
