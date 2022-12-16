@@ -22,9 +22,7 @@ class _DetectionViewState extends State<DetectionView> {
   late CameraController controller;
   int _selectedCamera = CameraViewSingleton.currentCamera;
 
-  @override
-  void initState() {
-    super.initState();
+  void initCamera() {
     controller = CameraController(
         CameraViewSingleton.cameras![_selectedCamera], ResolutionPreset.max);
     controller.initialize().then((_) {
@@ -44,6 +42,12 @@ class _DetectionViewState extends State<DetectionView> {
         }
       }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initCamera();
   }
 
   @override
@@ -105,9 +109,12 @@ class _DetectionViewState extends State<DetectionView> {
                               // This is called when selected item is changed.
                               onSelectedItemChanged: (int selectedItem) {
                                 setState(() {
-                                  _selectedCamera = selectedItem;
-                                  CameraViewSingleton.currentCamera =
-                                      selectedItem;
+                                  if (_selectedCamera != selectedItem) {
+                                    _selectedCamera = selectedItem;
+                                    CameraViewSingleton.currentCamera =
+                                        selectedItem;
+                                    initCamera();
+                                  }
                                 });
                               },
                               children: List<Widget>.generate(
