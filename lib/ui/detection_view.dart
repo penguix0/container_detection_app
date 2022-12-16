@@ -106,6 +106,8 @@ class _DetectionViewState extends State<DetectionView> {
                               onSelectedItemChanged: (int selectedItem) {
                                 setState(() {
                                   _selectedCamera = selectedItem;
+                                  CameraViewSingleton.currentCamera =
+                                      selectedItem;
                                 });
                               },
                               children: List<Widget>.generate(
