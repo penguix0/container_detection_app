@@ -146,7 +146,21 @@ class _DetectionViewState extends State<DetectionView> {
                           height: SizeConfig.blockSizeVertical! * 10,
                           child: CupertinoButton.filled(
                             padding: EdgeInsets.all(10),
-                            onPressed: () {},
+                            onPressed: () async {
+                              // Take the Picture in a try / catch block. If anything goes wrong,
+                              // catch the error.
+                              try {
+                                // Attempt to take a picture and get the file `image`
+                                // where it was saved.
+                                final image = await controller.takePicture();
+
+                                if (!mounted) return;
+                              } catch (e) {
+                                // If an error occurs, log the error to the console.
+                                print(e);
+                              }
+                              ;
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               decoration:
