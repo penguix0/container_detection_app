@@ -40,6 +40,8 @@ dependencies:
   auto_size_text: ^3.0.0
   camera: ^0.10.0+4
   shared_preferences:
+  http:
+  http_parser:
 
 dev_dependencies:
   flutter_test:

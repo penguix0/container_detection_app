@@ -1,5 +1,8 @@
 // ignore_for_file: unnecessary_const
 
+import 'dart:io';
+import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 import 'package:camera/camera.dart';
 import 'package:container_detection_app/size_config.dart';
 import 'package:container_detection_app/ui/camera_view_singleton.dart';
@@ -20,6 +23,9 @@ class DetectionView extends StatefulWidget {
 class _DetectionViewState extends State<DetectionView> {
   late CameraController controller;
   int _selectedCamera = CameraViewSingleton.currentCamera;
+  late File image;
+  String serverIP = "127.0.0.1";
+  int serverPort = 8080;
 
   void initCamera() {
     controller = CameraController(
@@ -41,6 +47,26 @@ class _DetectionViewState extends State<DetectionView> {
         }
       }
     });
+  }
+
+  void doUpload() {
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse("http://$serverIP:$serverPort/api/upload_image"),
+    );
+    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    request.files.add(
+      http.MultipartFile(
+        'image',
+        image.readAsBytes().asStream(),
+        image.lengthSync(),
+        filename: "filename",
+        contentType: MediaType('image', 'jpeg'),
+      ),
+    );
+    request.headers.addAll(headers);
+    print("request: " + request.toString());
+    request.send().then((value) => print(value.statusCode));
   }
 
   @override
@@ -153,8 +179,9 @@ class _DetectionViewState extends State<DetectionView> {
                                 // Attempt to take a picture and get the file `image`
                                 // where it was saved.
                                 final image = await controller.takePicture();
-
-                                if (!mounted) return;
+                                setState(() {
+                                  this.image = File(image.path);
+                                });
                               } catch (e) {
                                 // If an error occurs, log the error to the console.
                                 print(e);
