@@ -7,6 +7,7 @@ import 'package:container_detection_app/size_config.dart';
 import 'package:container_detection_app/ui/camera_view_singleton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 
 const double _kItemExtent = 32.0;
 
@@ -65,11 +66,14 @@ class _DetectionViewState extends State<DetectionView> {
       ),
     );
     request.headers.addAll(headers);
-    debugPrint("request: $request");
-    var res = await request.send();
-    debugPrint("This is response:$res");
-    debugPrint(res.statusCode.toString());
+    try {
+      request.send();
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
+
+  void getDetection() {}
 
   @override
   void initState() {
@@ -121,7 +125,11 @@ class _DetectionViewState extends State<DetectionView> {
             child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.fromLTRB(
+                        0,
+                        SizeConfig.blockSizeVertical! * 3,
+                        SizeConfig.blockSizeVertical! * 3,
+                        0),
                     child: Column(children: [
                       SizedBox(
                         width: SizeConfig.blockSizeVertical! * 10,
@@ -167,8 +175,8 @@ class _DetectionViewState extends State<DetectionView> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsets.all(SizeConfig.blockSizeVertical! * 1),
+                        padding: EdgeInsets.fromLTRB(
+                            0, SizeConfig.blockSizeVertical! * 2, 0, 0),
                         child: SizedBox(
                           width: SizeConfig.blockSizeVertical! * 10,
                           height: SizeConfig.blockSizeVertical! * 10,
@@ -197,6 +205,27 @@ class _DetectionViewState extends State<DetectionView> {
                               child: Icon(
                                 size: SizeConfig.blockSizeVertical! * 5,
                                 Icons.camera,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                            0, SizeConfig.blockSizeVertical! * 2, 0, 0),
+                        child: SizedBox(
+                          width: SizeConfig.blockSizeVertical! * 10,
+                          height: SizeConfig.blockSizeVertical! * 10,
+                          child: CupertinoButton.filled(
+                            padding: const EdgeInsets.all(10),
+                            onPressed: () {},
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration:
+                                  const BoxDecoration(shape: BoxShape.circle),
+                              child: Icon(
+                                size: SizeConfig.blockSizeVertical! * 5,
+                                Icons.widgets,
                               ),
                             ),
                           ),
