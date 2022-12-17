@@ -52,16 +52,18 @@ class StartView extends StatelessWidget {
             ])),
         Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 20),
-            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              const Icon(
-                Icons.photo_camera,
-              ),
-              const AutoSizeText(
-                "Item 2",
-                style: TextStyle(fontSize: 20),
-                maxLines: 2,
-              ),
-            ])),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Icon(
+                    Icons.photo_camera,
+                  ),
+                  AutoSizeText(
+                    "Item 2",
+                    style: TextStyle(fontSize: 20),
+                    maxLines: 2,
+                  ),
+                ])),
       ]),
       bottomNavigationBar: Padding(
           padding: EdgeInsets.only(
@@ -84,7 +86,7 @@ class StartView extends StatelessWidget {
               ),
               onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
                 builder: (BuildContext context) {
-                  return DetectionView();
+                  return const DetectionView();
                 },
               )),
             ),

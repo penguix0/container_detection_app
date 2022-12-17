@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_const
 
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:camera/camera.dart';
@@ -23,7 +22,6 @@ class DetectionView extends StatefulWidget {
 class _DetectionViewState extends State<DetectionView> {
   late CameraController controller;
   int _selectedCamera = CameraViewSingleton.currentCamera;
-  late File image;
   String serverIP = "127.0.0.1";
   int serverPort = 8080;
 
@@ -49,24 +47,28 @@ class _DetectionViewState extends State<DetectionView> {
     });
   }
 
-  void doUpload() {
+  void doUpload(image) async {
     var request = http.MultipartRequest(
       'POST',
       Uri.parse("http://$serverIP:$serverPort/api/upload_image"),
     );
-    Map<String, String> headers = {"Content-type": "multipart/form-data"};
+    Map<String, String> headers = {
+      "Content-type": "multipart/form-data",
+    };
     request.files.add(
       http.MultipartFile(
         'image',
         image.readAsBytes().asStream(),
-        image.lengthSync(),
-        filename: "filename",
-        contentType: MediaType('image', 'jpeg'),
+        await image.length(),
+        filename: "image.jpg",
+        contentType: MediaType('image', 'jpg'),
       ),
     );
     request.headers.addAll(headers);
-    print("request: " + request.toString());
-    request.send().then((value) => print(value.statusCode));
+    debugPrint("request: $request");
+    var res = await request.send();
+    debugPrint("This is response:$res");
+    debugPrint(res.statusCode.toString());
   }
 
   @override
@@ -119,13 +121,13 @@ class _DetectionViewState extends State<DetectionView> {
             child: Align(
                 alignment: Alignment.topRight,
                 child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(children: [
                       SizedBox(
                         width: SizeConfig.blockSizeVertical! * 10,
                         height: SizeConfig.blockSizeVertical! * 10,
                         child: CupertinoButton.filled(
-                          padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           onPressed: () {
                             _showDialog(CupertinoPicker(
                                 magnification: 1.22,
@@ -171,22 +173,22 @@ class _DetectionViewState extends State<DetectionView> {
                           width: SizeConfig.blockSizeVertical! * 10,
                           height: SizeConfig.blockSizeVertical! * 10,
                           child: CupertinoButton.filled(
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             onPressed: () async {
                               // Take the Picture in a try / catch block. If anything goes wrong,
                               // catch the error.
                               try {
                                 // Attempt to take a picture and get the file `image`
                                 // where it was saved.
-                                final image = await controller.takePicture();
-                                setState(() {
-                                  this.image = File(image.path);
-                                });
-                              } catch (e) {
-                                // If an error occurs, log the error to the console.
-                                print(e);
+                                var imageFromCamera =
+                                    await controller.takePicture();
+
+                                if (!mounted) return;
+                                debugPrint(imageFromCamera.path);
+                                doUpload(imageFromCamera);
+                              } catch (e, s) {
+                                debugPrint(s.toString());
                               }
-                              ;
                             },
                             child: Container(
                               alignment: Alignment.center,
