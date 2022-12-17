@@ -1,5 +1,6 @@
 // ignore_for_file: unnecessary_const
 
+import 'package:container_detection_app/ui/results_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:camera/camera.dart';
@@ -25,6 +26,7 @@ class _DetectionViewState extends State<DetectionView> {
   int _selectedCamera = CameraViewSingleton.currentCamera;
   String serverIP = "127.0.0.1";
   int serverPort = 8080;
+  late XFile image;
 
   void initCamera() {
     controller = CameraController(
@@ -192,8 +194,11 @@ class _DetectionViewState extends State<DetectionView> {
                                     await controller.takePicture();
 
                                 if (!mounted) return;
-                                debugPrint(imageFromCamera.path);
                                 doUpload(imageFromCamera);
+
+                                setState(() {
+                                  image = imageFromCamera;
+                                });
                               } catch (e, s) {
                                 debugPrint(s.toString());
                               }
@@ -218,7 +223,25 @@ class _DetectionViewState extends State<DetectionView> {
                           height: SizeConfig.blockSizeVertical! * 10,
                           child: CupertinoButton.filled(
                             padding: const EdgeInsets.all(10),
-                            onPressed: () {},
+                            onPressed: () async {
+                              Future<
+                                  http
+                                      .Response> response = http.get(Uri.parse(
+                                  "http://$serverIP:$serverPort/api/get_detection"));
+                              http.Response responseBody = await response;
+                              Map<String, dynamic> post =
+                                  json.decode(responseBody.body);
+                              debugPrint(post.toString());
+                              Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                  builder: (context) => ResultsView(
+                                    image: image,
+                                    json: post,
+                                  ),
+                                ),
+                              );
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               decoration:
