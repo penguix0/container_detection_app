@@ -229,15 +229,14 @@ class _DetectionViewState extends State<DetectionView> {
                                       .Response> response = http.get(Uri.parse(
                                   "http://$serverIP:$serverPort/api/get_detection"));
                               http.Response responseBody = await response;
-                              Map<String, dynamic> post =
-                                  json.decode(responseBody.body);
-                              debugPrint(post.toString());
+
+                              // ignore: use_build_context_synchronously
                               Navigator.push(
                                 context,
                                 CupertinoPageRoute(
                                   builder: (context) => ResultsView(
                                     image: image,
-                                    json: post,
+                                    response: responseBody,
                                   ),
                                 ),
                               );
