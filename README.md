@@ -2,7 +2,7 @@
   <br>
   <a href="https://github.com/penguix0/container-detection"><img src="https://raw.githubusercontent.com/penguix0/container-detection/3cdb95c46d74f46a9331f6dbf76cdd1a56daea3a/README/logo.svg" alt="Container_detection_logo" width="200"></a>
   <br>
-  Container detection name
+  CargoControl
   <br>
 </h1>
 
