@@ -1,0 +1,99 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:4448905651857159576",
+      "lastPropertyId": "9:9214392294722153544",
+      "name": "Picture",
+      "properties": [
+        {
+          "id": "1:1871279941251173708",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3297392607543154227",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:7307172752428168073",
+          "name": "bay",
+          "type": 6
+        },
+        {
+          "id": "4:781481841310660541",
+          "name": "path",
+          "type": 9
+        },
+        {
+          "id": "5:7322714618801613300",
+          "name": "width",
+          "type": 6
+        },
+        {
+          "id": "6:6961563417192374574",
+          "name": "height",
+          "type": 6
+        },
+        {
+          "id": "7:657514665598471751",
+          "name": "location",
+          "type": 9
+        },
+        {
+          "id": "8:1563437029353221592",
+          "name": "orientation",
+          "type": 9
+        },
+        {
+          "id": "9:9214392294722153544",
+          "name": "shipId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:5940229273880679964",
+          "relationTarget": "Ship"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:6512079005759923289",
+      "lastPropertyId": "3:6804501489030159148",
+      "name": "Ship",
+      "properties": [
+        {
+          "id": "1:2739254287468513441",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4267338947184990616",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:6804501489030159148",
+          "name": "bays",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "2:6512079005759923289",
+  "lastIndexId": "1:5940229273880679964",
+  "lastRelationId": "0:0",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

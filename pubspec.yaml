@@ -1,5 +1,5 @@
 name: container_detection_app
-description: A new Flutter project.
+description: A tool designed to help people with managing containers on a ship.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -17,10 +17,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
-  sdk: '>=2.18.5 <3.0.0'
+  sdk: '>=2.18.6 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -31,19 +31,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
-  auto_size_text: ^3.0.0
-  camera: ^0.10.0+4
-  shared_preferences:
-  http:
-  http_parser:
-  xfile: ^1.1.0
-  flutter_image_compress: ^1.1.3
+  path_provider: ^2.0.11
+  image_picker: ^0.8.3
+  http: any
+  path: ^1.8.2
+  uuid: ^3.0.7
+  sensors_plus: ^2.0.1
+  gallery_saver: ^2.3.2
+  easy_image_viewer: ^1.2.0
+  objectbox: ^1.7.0
+  objectbox_flutter_libs: ^1.7.0
+  archive: ^3.3.5
+  shared_preferences: ^2.0.16
+  camera: ^0.10.2+1
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +60,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.3.3
+  objectbox_generator: any
+  flutter_launcher_icons: "^0.11.0"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -66,7 +74,6 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -98,3 +105,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"

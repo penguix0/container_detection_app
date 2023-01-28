@@ -1,6 +1,6 @@
 {
-    "name": "container_detection_web_app",
-    "short_name": "container_detection_web_app",
+    "name": "container_detection_app",
+    "short_name": "container_detection_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

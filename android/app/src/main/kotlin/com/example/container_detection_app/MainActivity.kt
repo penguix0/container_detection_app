@@ -1,4 +1,4 @@
-package com.example.container_detection_web_app
+package com.example.container_detection_app
 
 import io.flutter.embedding.android.FlutterActivity
 
