@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/penguix0/container_detection_app"><img src="https://raw.githubusercontent.com/penguix0/container_detection_app/3cdb95c46d74f46a9331f6dbf76cdd1a56daea3a/README/logo.svg" alt="Container_detection_logo" width="200"></a>
+  <a href="https://github.com/penguix0/container_detection_app"><img src="https://raw.githubusercontent.com/penguix0/container_detection_app/README/logo.svg" alt="Container_detection_logo" width="200"></a>
   <br>
   CargoControl
   <br>
