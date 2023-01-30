@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/penguix0/container-detection"><img src="https://raw.githubusercontent.com/penguix0/container-detection/3cdb95c46d74f46a9331f6dbf76cdd1a56daea3a/README/logo.svg" alt="Container_detection_logo" width="200"></a>
+  <a href="https://github.com/penguix0/container_detection_app"><img src="https://raw.githubusercontent.com/penguix0/container_detection_app/3cdb95c46d74f46a9331f6dbf76cdd1a56daea3a/README/logo.svg" alt="Container_detection_logo" width="200"></a>
   <br>
   CargoControl
   <br>
@@ -20,7 +20,7 @@ A cross-platform app built with flutter to detect containers and store the infor
 <br>
 
 <div align="center">
- <img src="https://github.com/penguix0/container-detection/blob/main/README/example.png?raw=true">
+ <img src="https://github.com/penguix0/container_detection_app/blob/main/README/example.png?raw=true">
 </div>
 <div align="center">
     <i>This is an example picture made in early development</i>
